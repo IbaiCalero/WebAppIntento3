@@ -113,11 +113,19 @@ $(function() {
         data.username = "Yo";
         soyYo = 1;
     }
-    var $usernameDiv = $('<span class="username" style="padding: 3px 0px 3px 5px; font-family serif; font-size:auto; border-radius: 3px 0px 0px 3px; border-left: 1px solid black; background-color: #EEEEEE;  border-top: 1px solid black;  border-bottom: 1px solid black;"/>')
-      .text(data.username)
-      .css('color', getUsernameColor(data.username));
-    var $messageBodyDiv = $('<span class="messageBody" style="padding: 3px 5px 3px 7px; border-radius: 0px 3px 3px 0px; border-right: 1px solid black; background-color: #EEEEEE; border-top: 1px solid black;  border-bottom: 1px solid black;">')
-      .text(data.message);
+    if (soyYo == 0) {
+        var $usernameDiv = $('<span class="username" style="padding: 3px 0px 3px 5px; font-family serif; font-size:auto; border-radius: 3px 0px 0px 3px; border-left: 1px solid black; background-color: #EEEEEE;  border-top: 1px solid black;  border-bottom: 1px solid black;"/>')
+          .text(data.username)
+          .css('color', getUsernameColor(data.username));
+        var $messageBodyDiv = $('<span class="messageBody" style="padding: 3px 5px 3px 7px; border-radius: 0px 3px 3px 0px; border-right: 1px solid black; background-color: #EEEEEE ; border-top: 1px solid black;  border-bottom: 1px solid black;">')
+          .text(data.message);
+    } else {
+        var $usernameDiv = $('<span class="username" style="padding: 3px 0px 3px 5px; font-family serif; font-size:auto; border-radius: 3px 0px 0px 3px; border-left: 1px solid black; background-color: #90EE90 ;  border-top: 1px solid black;  border-bottom: 1px solid black;"/>')
+          .text(data.username)
+          .css('color', getUsernameColor(data.username));
+        var $messageBodyDiv = $('<span class="messageBody" style="padding: 3px 5px 3px 7px; border-radius: 0px 3px 3px 0px; border-right: 1px solid black; background-color: #90EE90 ; border-top: 1px solid black;  border-bottom: 1px solid black;">')
+          .text(data.message);
+    }
     
     var typingClass = data.typing ? 'typing' : '';
     if (soyYo == 1) {
