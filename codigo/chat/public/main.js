@@ -30,10 +30,10 @@ $(function() {
   function addParticipantsMessage (data) {
       var message = '';
       if (data.numUsers == 1) {
-          message = "Estás sol@ en la sala. Recuerda que podrán leerte al conectarse";
+          message = username + " estás sol@ en la sala. Recuerda que podrán leerte al conectarse";
           document.getElementById("infoAmigos").innerHTML = message;
     } else {
-      message += data.numUsers + " usuarios en la sala: ";
+      message +=  data.numUsers + " usuarios en la sala: ";
       for (i = 0; i < data.listaUsuarios.length + 1; i++) {
           if (data.listaUsuarios[i] != null && data.listaUsuarios[i].localeCompare("null") != 0) {
 				if (i == (data.listaUsuarios.length)-1){			
@@ -108,19 +108,29 @@ $(function() {
       options.fade = false;
       $typingMessages.remove();
     }
-
-    var $usernameDiv = $('<span class="username"/>')
+    var soyYo = 0;
+    if (username == data.username) {
+        data.username = "Yo";
+        soyYo = 1;
+    }
+    var $usernameDiv = $('<span class="username" style="padding: 3px 0px 3px 5px; font-family serif; font-size:auto; border-radius: 3px 0px 0px 3px; border-left: 1px solid black; background-color: #EEEEEE;  border-top: 1px solid black;  border-bottom: 1px solid black;"/>')
       .text(data.username)
       .css('color', getUsernameColor(data.username));
-    var $messageBodyDiv = $('<span class="messageBody">')
+    var $messageBodyDiv = $('<span class="messageBody" style="padding: 3px 5px 3px 7px; border-radius: 0px 3px 3px 0px; border-right: 1px solid black; background-color: #EEEEEE; border-top: 1px solid black;  border-bottom: 1px solid black;">')
       .text(data.message);
-
+    
     var typingClass = data.typing ? 'typing' : '';
-    var $messageDiv = $('<li class="message"/>')
+    if (soyYo == 1) {
+        var $messageDiv = $('<li class="message" style="margin: 20px; text-align:right;"/>')
       .data('username', data.username)
       .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
-
+    } else {
+        var $messageDiv = $('<li class="message" style="margin: 20px;"/>')
+          .data('username', data.username)
+          .addClass(typingClass)
+          .append($usernameDiv, $messageBodyDiv);
+    }
     addMessageElement($messageDiv, options);
   }
     /*--------- Visualizar mensaje de chat---------------- */
