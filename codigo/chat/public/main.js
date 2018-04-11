@@ -142,6 +142,8 @@ $(function() {
     addMessageElement($messageDiv, options);
   }
     /*--------- Visualizar mensaje de chat---------------- */
+
+    /*--------- Visualizar que alguien escribe en el chat---------------- */
   // Adds the visual chat typing message
   function addChatTyping (data) {
     data.typing = true;
@@ -156,11 +158,9 @@ $(function() {
     });
   }
 
-  // Adds a message element to the messages and scrolls to the bottom
-  // el - The element to add as a message
-  // options.fade - If the element should fade-in (default = true)
-  // options.prepend - If the element should prepend
-  //   all other messages (default = false)
+    /*--------- Visualizar que alguien escribe en el chat---------------- */
+
+    /* -----srcoll + cascada de mensajes-----*/
   function addMessageElement (el, options) {
     var $el = $(el);
 
@@ -187,11 +187,15 @@ $(function() {
     $messages[0].scrollTop = $messages[0].scrollHeight;
   }
 
+    /* -----srcoll + cascada de mensajes-----*/
+
+
   // Prevents input from having injected markup
   function cleanInput (input) {
     return $('<div/>').text(input).text();
   }
 
+    /*---- Esfrescar datos, importante!!!!----*/
   // Updates the typing event
   function updateTyping () {
     if (connected) {
@@ -211,6 +215,8 @@ $(function() {
       }, TYPING_TIMER_LENGTH);
     }
   }
+
+    /*---- Esfrescar datos, importante!!!!----*/
 
   // Gets the 'X is typing' messages of a user
   function getTypingMessages (data) {
@@ -233,6 +239,7 @@ $(function() {
 
   // Keyboard events
 
+    /*----- Funciones para saber si se deja de escribir, escribe y/o envía datos-----------*/ 
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
@@ -266,6 +273,10 @@ $(function() {
     $inputMessage.focus();
   });
 
+    /*----- Funciones para saber si se deja de escribir, escribe y/o envía datos-----------*/
+
+
+    /*------IMPORTANTE -> LOS SOCKETS EVENTS----*/
   // Socket events
 
   // Whenever the server emits 'login', log the login message
@@ -340,5 +351,6 @@ $(function() {
 	window.open("http://localhost:3000/");
         
   });
+    /*----- socket events-----------*/
 
 });
