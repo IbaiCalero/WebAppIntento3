@@ -85,7 +85,7 @@ $(function() {
         message: message
       });
       // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', message);
+      socket.emit('new message',message);
     }
   }
     /*----------------- Mandar un mensaje de un usuario -----------*/
@@ -127,7 +127,7 @@ $(function() {
   // Adds the visual chat typing message
   function addChatTyping (data) {
     data.typing = true;
-    data.message = 'is typing';
+    data.message = 'está escribiendo';
     addChatMessage(data);
   }
 
@@ -264,14 +264,14 @@ $(function() {
 
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
-    log(data.username + ' joined');
+    log(data.username + ' se ha unido');
     addParticipantsMessage(data);
   });
 
   // Whenever the server emits 'user left', log it in the chat body
   socket.on('user left', function (data) {
   if(data.username.localeCompare("null")!=0){
-    log(data.username + ' left');
+    log(data.username + ' se ha ido');
     addParticipantsMessage(data);
     removeChatTyping(data);
   }
@@ -288,16 +288,16 @@ $(function() {
   });
 
     socket.on('disconnect', function () {
-        log('You have been disconnected');        
+        log('Te has desconectado');        
     });
 
     socket.on('disconnect sala llena', function () {
-        log('You have been disconnected: chat full');
+        log('Te has desconectado porque se ha llenado la sala');
         window.close();       
     });
   
     socket.on('nombre_coincide', function () {
-        alert("Mala suerte, alguien se te adelantó");
+        alert("Mala suerte, alguien se te adelantó al elegir nombre");
         location.reload();    
     });
 
