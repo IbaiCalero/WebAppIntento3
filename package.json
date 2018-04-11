@@ -21,7 +21,7 @@
     "url": "git://github.com/socketio/socket.io"
   },
   "scripts": {
-    "start": "node ./examples/chat/index.js"
+    "start": "node ./codigo/chat/index.js"
   },
   "dependencies": {
     "debug": "2.3.3",
